@@ -33,7 +33,7 @@ int main() {
         	date.process();
          	do{
         		cout << "Would you like to try again? (Y/N): ";
-                cin >> answer;  
+				cin >> answer;  
 			} while(!(answer == 'Y') && !(answer == 'y') && !(answer == 'N') && !(answer == 'n'));
 		} while((answer == 'Y') || (answer == 'y'));
 		cout << endl << "Goodbye." << endl;
