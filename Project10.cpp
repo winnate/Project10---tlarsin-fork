@@ -45,9 +45,9 @@ int main() {
 void DayOfYear::input() {
         cout << "Only numerical values please." << endl;
         do {
-                cout << "Please enter in the day, month and year: ";
-                cin >> day;
+                cout << "Please enter in the month, day and year: ";
                 cin >> month;
+                cin >> day;
                 cin >> year;
         }
         while((day < 1) || (day > 31) || (month < 1) || (month > 12) || (year < 1) );
