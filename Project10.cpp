@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 /*
@@ -12,16 +13,15 @@ using namespace std;
 
 class DayOfYear {
         public:
-                void input();
                 void process();
-                bool isLeapYear(int year);
-                int getCenturyValue(int year);
-                int getYearValue(int year);
-                int getMonthValue(int month, int year);
-                void getDay(int actualDay);
         private:
                 int month, day, year, actualDay;
-
+                bool isLeapYear();
+                int getCenturyValue();
+                int getYearValue();
+                int getMonthValue();
+                void getDay();
+                void input();
 };
 
 int main() {
@@ -30,17 +30,16 @@ int main() {
         char answer;
         //Function Call;
         do{
-                date.process();
-                do{
-                cout << "Would you like to try again? (Y/N): ";
-                cin >> answer;  }
-        while(!(answer == 'Y') && !(answer == 'y') && !(answer == 'N') && !(answer == 'n'));
-
-        }
-        while((answer == 'Y') || (answer == 'y'));
-
-        cout << endl << "Goodbye." << endl;
+        	date.process();
+         	do{
+        		cout << "Would you like to try again? (Y/N): ";
+                cin >> answer;  
+			} while(!(answer == 'Y') && !(answer == 'y') && !(answer == 'N') && !(answer == 'n'));
+		} while((answer == 'Y') || (answer == 'y'));
+		cout << endl << "Goodbye." << endl;
+		return 0;
 }
+
 
 void DayOfYear::input() {
         cout << "Only numerical values please." << endl;
@@ -51,41 +50,40 @@ void DayOfYear::input() {
                 cin >> year;
         }
         while((day < 1) || (day > 31) || (month < 1) || (month > 12) || (year < 1) );
-
 }
 
 void DayOfYear::process(){
         input();
-        isLeapYear(year);
-        getCenturyValue(year);
-        getYearValue(year);
-        getMonthValue(month, year);
-        actualDay = day + getCenturyValue(year) + getYearValue(year) + getMonthValue(month, year);
-        getDay(actualDay);
+        isLeapYear();
+        getCenturyValue();
+        getYearValue();
+        getMonthValue();
+        actualDay = day + getCenturyValue() + getYearValue() + getMonthValue();
+        getDay();
 }
 
-bool DayOfYear::isLeapYear(int year) {
+bool DayOfYear::isLeapYear() {
         if(year % 400 == 0)
                 return true;
         else
                 return false;
 }
 
-int DayOfYear::getCenturyValue(int year) {
+int DayOfYear::getCenturyValue() {
         int first2, rem;
         first2 = year / 100;
         rem = first2 % 4;
         return (3 - rem) *2;
 }
 
-int DayOfYear::getYearValue(int year) {
+int DayOfYear::getYearValue() {
         int last2, result;
         last2 = year % 100;
         result = last2 / 4;
         return last2 + result;
 }
 
-int DayOfYear::getMonthValue(int month, int year) {
+int DayOfYear::getMonthValue() {
         switch(month) {
         case 1:
                 if(!(year % 400) == 0)
@@ -119,7 +117,7 @@ int DayOfYear::getMonthValue(int month, int year) {
                 return 5; }
 }
 
-void DayOfYear::getDay(int actualDay) {
+void DayOfYear::getDay() {
         int remainder;
         remainder = actualDay % 7;
                 switch(remainder) {
